@@ -9,10 +9,11 @@ export const DataSource = ({ getDataFunc = () => {}, resourceName, children }) =
   useEffect(() => {
     (async () => {
       const data = await getDataFunc();
+      // This setState will set the state to whatever|ANY data is returned from the getDataFunc.
       setState(data);
     })();
   }, [getDataFunc]);
-  
+
   return (
     <> 
       {React.Children.map(children, (child) => {
