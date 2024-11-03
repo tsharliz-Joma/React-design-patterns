@@ -1,19 +1,16 @@
-import { ResourceLoader } from "./components/resourceLoader/ResourceLoader";
-import { UserLoader } from "./components/userloader/UserLoader";
 import { UserInfo } from "./components/user/UserInfo";
 import { DataSource } from "./DataSource";
 import axios from "axios";
 
+const getServerData = (url) => async () => {
+  const response = await axios.get(url);
+  return response.data;
+};
+
 function App() {
   return (
     <>
-      <DataSource
-        getDataFunc={async () => {
-          const response = await axios.get("/users/456");
-          return response.data;
-        }}
-        resourceName="user"
-      >
+      <DataSource getDataFunc={getServerData("/users/456")} resourceName="user">
         <UserInfo />
       </DataSource>
     </>
