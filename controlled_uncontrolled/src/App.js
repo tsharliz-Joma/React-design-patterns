@@ -39,7 +39,7 @@ const App = () => {
   const [shouldShowModal, setShouldShowModal] = useState(false);
   const [onboardingData, setOnboardingData] = useState({});
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  
   const onNext = (stepData) => {
     setOnboardingData({...onboardingData, ...stepData});
     setCurrentIndex(currentIndex + 1);
@@ -72,7 +72,6 @@ const App = () => {
           onFinish={(data) => {
             console.log(data);
           }}>
-          {/* The children all have the goToNext function as an inbuilt prop */}
           <StepOne />
           <StepTwo />
           <StepThree />
@@ -83,7 +82,6 @@ const App = () => {
           onFinish={(data) => {
             console.log(data);
           }}>
-          {/* The children all have the goToNext function as an inbuilt prop */}
           <StepOne />
           <StepTwo />
           {onboardingData.age >= 62 && <StepThree />}
