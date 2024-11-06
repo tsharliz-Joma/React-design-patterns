@@ -1,4 +1,3 @@
-# React-design-patterns
 
 # React-design-patterns
 
