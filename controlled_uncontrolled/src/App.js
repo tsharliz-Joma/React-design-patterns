@@ -68,20 +68,14 @@ const App = () => {
       </div>
       <div id="Onboarding Flow">
         <h1>Uncontrolled Onboarding</h1>
-        <UncontrolledOnboardingFlow
-          onFinish={(data) => {
-            console.log(data);
-          }}>
+        <UncontrolledOnboardingFlow>
           <StepOne />
           <StepTwo />
           <StepThree />
         </UncontrolledOnboardingFlow>
         <ControlledOnboardingFlow
           currentIndex={currentIndex}
-          onNext={onNext}
-          onFinish={(data) => {
-            console.log(data);
-          }}>
+          onNext={onNext}>
           <StepOne />
           <StepTwo />
           {onboardingData.age >= 62 && <StepThree />}

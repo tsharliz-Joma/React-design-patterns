@@ -1,4 +1,3 @@
-
 # React-design-patterns
 
 This repository contains various React design patterns implemented as separate projects. Each project demonstrates a specific pattern or set of patterns that can be used to build React applications.
@@ -148,21 +147,41 @@ const StepTwo = ({ goToNext }) => (
 const StepThree = ({ goToNext }) => (
   <>
     <h3>Step Three</h3>
-    <button onClick={() => goToNext({ hairColor: "brown" })}>Next</button>
+    <p>Congrats! you qualify for our senior discount</p>
+    <button onClick={() => goToNext({})}>Next</button>
+  </>
+);
+
+const StepFour = ({ goToNext }) => (
+  <>
+    <h3>Step Four</h3>
+    <button onClick={() => goToNext({ hairColor: "Brown" })}>Next</button>
   </>
 );
 
 function App() {
+  const [shouldShowModal, setShouldShowModal] = useState(false);
+  const [onboardingData, setOnboardingData] = useState({});
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const onNext = (stepData) => {
+    setOnboardingData({ ...onboardingData, ...stepData });
+    setCurrentIndex(currentIndex + 1);
+  };
+
   return (
     <>
       <ControlledForm />
       <UncontrolledForm />
-      <ControlledModal />
+      <ControlledModal shouldShow={shouldShowModal} onRequestClose={() => setShouldShowModal(false)}>
+        <h3>Hello From Controlled Modal</h3>
+      </ControlledModal>
       <UncontrolledModal />
-      <ControlledOnboardingFlow>
+      <ControlledOnboardingFlow currentIndex={currentIndex} onNext={onNext}>
         <StepOne />
         <StepTwo />
-        <StepThree />
+        {onboardingData.age >= 62 && <StepThree />}
+        <StepFour />
       </ControlledOnboardingFlow>
       <UncontrolledOnboardingFlow>
         <StepOne />
