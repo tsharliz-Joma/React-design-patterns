@@ -52,17 +52,17 @@ const products = [{
 	rating: 4.2,
 }];
 
-app.get('/current-user', (req, res) => {
+app.get('/api/current-user', (req, res) => {
 	res.json(currentUser);
 });
 
-app.get('/users/:id', (req, res) => {
+app.get('/api/users/:id', (req, res) => {
 	const { id } = req.params;
 
 	res.json(users.find(user => user.id === id));
 });
 
-app.post('/users/:id', (req, res) => {
+app.post('/api/users/:id', (req, res) => {
 	const { id } = req.params;
 	const { user: updatedUser } = req.body;
 
@@ -71,17 +71,17 @@ app.post('/users/:id', (req, res) => {
 	res.json(users.find(user => user.id === id));
 });
 
-app.get('/users', (req, res) => {
+app.get('/api/users', (req, res) => {
 	res.json(users);
 });
 
-app.get('/products/:id', (req, res) => {
+app.get('/api/products/:id', (req, res) => {
 	const { id } = req.params;
 
 	res.json(products.find(product => product.id === id));
 });
 
-app.get('/products', (req, res) => {
+app.get('/api/products', (req, res) => {
 	res.json(products);
 });
 
